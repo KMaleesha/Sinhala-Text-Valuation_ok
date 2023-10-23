@@ -19,7 +19,7 @@ def find_different_letters(input_word, similar_word):
 
 
 # Input word
-input_word = 'වදරා'
+input_word = input("Please enter the word: ")
 most_similar_word = find_most_similar_word(input_word, df['words'])
 
 if most_similar_word:
