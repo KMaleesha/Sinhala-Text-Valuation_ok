@@ -26,6 +26,7 @@ def compare_words():
         data = request.get_json()
         input_word = data['input_word']
 
+        user_input = input_word
         most_similar_word = find_most_similar_word(input_word, df['words'])
 
         if most_similar_word:
@@ -64,7 +65,7 @@ def compare_words():
                 position_info.append(f"Number of Different Letters: {differing_letter_count}")
 
                 return jsonify({
-                    "User Input": input_word,
+                    "User Input": user_input,
                     "Most Match": most_matching_word,
                     "Differing Letters": differing_letters,
                     "Position Info": position_info
