@@ -1,11 +1,13 @@
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 import pandas as pd
 import difflib
-from flask import Flask, request, jsonify
 
 # Read data
 df = pd.read_excel('DataSet.xlsx')
 
 app = Flask(__name__)
+CORS(app)
 
 def find_most_similar_word(input_word, word_list):
     similarities = difflib.get_close_matches(input_word, word_list)
@@ -55,8 +57,8 @@ def compare_words():
                     position_info.append("Position: initial")
                 if input_letter in row['middle']:
                     position_info.append("Position: middle")
-                if input_letter in row['final']:
-                    position_info.append("Position: final")
+                if input_letter in row['end']:
+                    position_info.append("Position: end")
 
                 differing_letter_count = len(differing_letters)
                 position_info.append(f"Number of Different Letters: {differing_letter_count}")
@@ -74,4 +76,4 @@ def compare_words():
         return jsonify({"error": str(e)}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)

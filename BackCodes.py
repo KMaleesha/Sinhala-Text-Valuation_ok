@@ -19,7 +19,7 @@ def find_different_letters(input_word, similar_word):
 
 
 # Input word
-input_word = input("Please enter the word: ")
+input_word = input()
 most_similar_word = find_most_similar_word(input_word, df['words'])
 
 if most_similar_word:
@@ -69,7 +69,7 @@ row = df[df['words'] == input_word].iloc[0]
 
 initial_position = None
 middle_position = None
-final_position = None
+end_position = None
 
 if input_letter in row['initial']:
     initial_position = row['initial'].index(input_letter)
@@ -77,16 +77,16 @@ if input_letter in row['initial']:
 if input_letter in row['middle']:
     middle_position = row['middle'].index(input_letter)
 
-if input_letter in row['final']:
-    final_position = row['final'].index(input_letter)
+if input_letter in row['end']:
+    end_position = row['end'].index(input_letter)
 
 # Print
 if initial_position is not None:
     print("Position: initial")
 if middle_position is not None:
     print("Position: middle")
-if final_position is not None:
-    print("Position: final")
+if end_position is not None:
+    print("Position: end")
 
 # Check if differing_letter is not None before getting its length
 if differing_letters is not None:
